@@ -1,0 +1,114 @@
+
+def closeweb():
+    global chatThread,isExit
+    isExit = True
+    chatThread.join()
+    browser.quit()
+    root.destroy()
+
+def startRead(linkEntry,readDelayEntry,refreshRateEntry,MaxKeyDelayEntry,MaxInputKeysEntry):
+    global readDelay,refreshRate,MaxInputKeys,MaxKeyDelay,root,chatThread,isExit
+
+    try:
+        isExit = True
+        chatThread.join()
+        isExit = False
+    except:
+        pass
+    
+    try:
+        float(readDelayEntry.get())
+        int(refreshRateEntry.get())
+        int(MaxKeyDelayEntry.get())
+        int(MaxInputKeysEntry.get())
+    except:
+        messagebox.showerror("Invalid Data type","Please enter only numbers in parameters")
+        return
+
+    if float(readDelayEntry.get()) <= 0:
+        readDelayEntry.delete(0,'end')
+        readDelayEntry.insert(tk.END,0.1)
+        readDelay = 0.1
+    else:
+        readDelay = float(readDelayEntry.get())
+
+    refreshRate = int(refreshRateEntry.get())
+    MaxInputKeys = int(MaxInputKeysEntry.get())
+    MaxKeyDelay = int(MaxInputKeysEntry.get())
+
+    lock = threading.Lock()
+    chatThread = threading.Thread(target= readChat,args=[lock,linkEntry.get()])
+    chatThread.start()
+
+def main():
+    global paused,root
+    global readDelay,keyStack,paused,refreshRate,browser,MaxInputKeys,MaxKeyDelay
+
+    root = tk.Tk()
+
+    #Configuring Window GUI
+    root.title("Tube Play")
+    root.geometry("600x240")
+
+    root.columnconfigure(0,weight=1)
+    root.columnconfigure(1,weight=1)
+    root.columnconfigure(2,weight=1)
+    root.columnconfigure(3,weight=1)
+
+    #Building GUI
+        #Link
+    linkLabel = tk.Label(root,text="Pop-out Chat Link : ")
+    linkLabel.grid(row=0,column=0)
+
+    linkEntry = tk.Entry(root)
+    linkEntry.insert(tk.END,'https://youtu.be/0Ku4f56pj-U')
+    linkEntry.grid(row=0,column=1,columnspan=3,padx=2,pady=2,sticky="news")
+
+    startReadingButton = tk.Button(root,text="Start Reading")
+    startReadingButton.grid(row=1,column=1,padx=5,pady=5)
+
+    root.statusLabel = tk.Label(root,text="Status : Not Reading")
+    root.statusLabel.grid(row=1,column=2,padx=5,pady=5)
+
+        #Read Delay
+    readDelayLabel = tk.Label(root,text="Read delay : ")
+    readDelayLabel.grid(row=2,column=0,sticky="e")
+
+    readDelayEntry = tk.Entry(root)
+    readDelayEntry.insert(tk.END,readDelay)
+    readDelayEntry.grid(row=2,column=1,sticky="w")
+
+        #Refresh Rate
+    refreshRateLabel = tk.Label(root,text="Refresh Rate : ")
+    refreshRateLabel.grid(row=2,column=2,sticky="e")
+
+    refreshRateEntry = tk.Entry(root)
+    refreshRateEntry.insert(tk.END,refreshRate)
+    refreshRateEntry.grid(row=2,column=3,sticky="w")
+    
+        #Max Key Delay
+    MaxKeyDelayLabel = tk.Label(root,text="Max Key Press Delay : ")
+    MaxKeyDelayLabel.grid(row=3,column=0,sticky="e")
+
+    MaxKeyDelayEntry = tk.Entry(root)
+    MaxKeyDelayEntry.insert(tk.END,MaxKeyDelay)
+    MaxKeyDelayEntry.grid(row=3,column=1,sticky="w")
+
+        #Max Input Keys
+    MaxInputKeysLabel = tk.Label(root,text="Max Input Keys : ")
+    MaxInputKeysLabel.grid(row=3,column=2,sticky="e")
+
+    MaxInputKeysEntry = tk.Entry(root)
+    MaxInputKeysEntry.insert(tk.END,MaxInputKeys)
+    MaxInputKeysEntry.grid(row=3,column=3,sticky="w")
+
+        #Pause Notice
+    pauseNoticeLabel = tk.Label(root,text="[!] NOTE : Reading is Paused by default.\nTo toggle the pause, press '1','2' and '3' at the same time.")
+    pauseNoticeLabel.grid(row=4,column=0,columnspan=4,padx=5,pady=5)
+
+    startReadingButton.config(command=lambda:startRead(linkEntry,readDelayEntry,refreshRateEntry,MaxKeyDelayEntry,MaxInputKeysEntry))
+
+    #Closing the web browser on quit
+    root.protocol('WM_DELETE_WINDOW', closeweb)
+    
+    root.mainloop()
