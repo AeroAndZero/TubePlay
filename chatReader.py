@@ -145,6 +145,7 @@ def startRead(linkEntry):
 
     noticeRoot = tk.Tk()
     noticeRoot.title("Note")
+    noticeRoot.iconbitmap(os.path.join(os.getcwd(),'tubeplayLogo.ico'))
     noticeRoot.resizable(0,0)
 
     def final():
@@ -159,6 +160,7 @@ def startRead(linkEntry):
 def main():
     global root
     root = tk.Tk()
+    root.iconbitmap(os.path.join(os.getcwd(),'tubeplayLogo.ico'))
     root.focus_force()
 
     #Configuring Window GUI
