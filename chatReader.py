@@ -39,7 +39,7 @@ def deEmojify(inputString):
 def processKey(messageString,gameloop,delay):
     global keyStack
     requests = messageString.split(',')
-    keyDuration = 1
+    keyDuration = 0
     
     if len(requests) > MaxInputKeys:
         return 0
@@ -58,7 +58,7 @@ def processKey(messageString,gameloop,delay):
             keyStack.append([keyList[keyName],keyDuration])
 
 def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U'):
-    global readDelay,keyStack,paused,refreshRate,browser,root
+    global readDelay,keyStack,paused,refreshRate,browser,root,isExit
 
     #Parameters
     msgID = [0]
@@ -70,7 +70,7 @@ def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U')
     #Loading the page
     browser.get(link)
     
-    print("\n\n[!] Script is Paused By Default\nTo Resume the script Press '1','2' and '3' at the same time")
+    print("\n\n[!] Script is Paused By Default\n- To Resume the script Press '1','2' and '3' at the same time\n- To Quit Press '4','5','6' at the same time\n")
     print(">> Script Paused <<")
 
     #Main Loop
@@ -99,6 +99,7 @@ def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U')
                 if keyData[1] >= gameLoop:
                     PressKey(keyData[0])
                 else:
+                    PressKey(keyData[0])
                     ReleaseKey(keyData[0])
                     keyStack.remove(keyData)
         
@@ -117,6 +118,8 @@ def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U')
                 print(">> Script Paused <<")
             if not paused:
                 print(">> Script Unpaused <<")
+        elif '4' in keys and '5' in keys and '6' in keys:
+            isExit = True
 
         #Saving From overflow
         if len(msgID) % refreshRate == 0:
@@ -127,19 +130,29 @@ def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U')
         if isExit:
             break
 
+def checkLink(link):
+    browser.get(link)
+
 def startRead(linkEntry):
     global root
     link = linkEntry.get()
+    #Link checking.. Important
+    try:
+        checkLink(link)
+    except:
+        messagebox.showerror("Invalid Link","Entered Link is invalid or doesn't exists. Please paste the full link including 'http' or 'https'")
+        return
     root.destroy()
 
     noticeRoot = tk.Tk()
     noticeRoot.title("Note")
+    noticeRoot.resizable(0,0)
 
     def final():
         noticeRoot.destroy()
         readChat(link=link)
 
-    label = tk.Label(noticeRoot,text="[!] Script is paused by default.\n To unpause/pause the script, press '1','2' and '3' at the same time").pack()
+    label = tk.Label(noticeRoot,text="[!] Script is paused by default.\n- To unpause/pause the script, press '1','2' and '3' at the same time\n- To Quit Press '4','5','6' at the same time.").pack()
     okbutton = tk.Button(noticeRoot,text="Ok",command=final).pack(fill=tk.X,padx=5,pady=5)
 
     noticeRoot.mainloop()
@@ -152,6 +165,7 @@ def main():
     #Configuring Window GUI
     root.title("Tube Play")
     root.geometry("600x80")
+    root.resizable(0,0)
     
     root.columnconfigure(0,weight=1)
     root.columnconfigure(1,weight=2)
