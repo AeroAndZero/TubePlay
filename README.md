@@ -1,6 +1,7 @@
 # TubePlay - [Download For Windows](https://github.com/AeroAndZero/TubePlay/releases)
  Let your youtube livechat play the game !       
- - Your youtube livestream audience can type key-name in the livechat and it will get press on the pc of livestreamer
+ - Your youtube livestream audience can type key-name in the livechat and it will get press on the pc of livestreamer        
+ ![Livestream Preview](/readmeAssets/livestreamPreview.gif)     
  ### Syntax : Key-Label Duration
  #### Example : w 1,ctrl 1
  other examples : w,s       
