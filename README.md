@@ -15,3 +15,4 @@ To toggle **pause** press '1','2' and '3' simultaneously!
 - Tkinter
 - Selenium webdriver
 - Pynput
+- pywin32
