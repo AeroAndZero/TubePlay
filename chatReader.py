@@ -10,7 +10,6 @@ from selenium import webdriver
 import time
 import os
 from getkeys import key_check
-from pynput.mouse import Button,Controller
 from directkeys import PressKey, ReleaseKey, keyList
 import sys
 import tkinter as tk
