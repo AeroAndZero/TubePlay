@@ -5,7 +5,7 @@
  #### Example : w 1,ctrl 1
  other examples : w,s       
                   space,backspace 1         
-- **Remember 'alt','windows' and 'escape' keys are disabled for security reasons***
+- **Remember 'alt','windows' and 'escape' keys are disabled for security reasons**
 ## How to Use ?
 Run the script and paste the pop-out chat link in the text field and click on read chat.   
 To toggle **pause** press '1','2' and '3' simultaneously!     
