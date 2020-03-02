@@ -56,6 +56,10 @@ def processKey(messageString,gameloop,delay):
         if keyName in keyList and len(keyStack) <= 10:
             keyStack.append([keyList[keyName],keyDuration])
 
+def closeBrowser():
+    browser.quit()
+    quit()
+
 def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U'):
     global readDelay,keyStack,paused,refreshRate,browser,root,isExit
 
@@ -127,6 +131,7 @@ def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U')
             print("--------------- Refreshed --------------")
 
         if isExit:
+            closeBrowser()
             break
 
 def checkLink(link):
