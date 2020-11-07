@@ -1,6 +1,12 @@
 # TubePlay - [Download For Windows](https://github.com/AeroAndZero/TubePlay/releases)
  Let your youtube livechat play the game !       
- - Your youtube livestream audience can type key-name in the livechat and it will get press on the pc of livestreamer        
+ ## Important ⚠️ :
+ #### The version of chrome driver This package contains may differ from your chrome browser version. To setup this software correctly Follow these steps :
+ - Go to 3 dots in your chrome browser -> Help -> About chrome -> Check your chrome version
+ - Then go to [Chrome Driver](https://chromedriver.chromium.org/downloads) website and download your corresponding version
+ - After you have downloaded your chrome driver, Simply extract and paste it in your software folder (replace it with the driver I provided).
+ - After following these steps, Your application should work.
+ ### Your youtube livestream audience can type key-name in the livechat and it will get press on the pc of livestreamer        
  ![Livestream Preview](/readmeAssets/livestreamPreview.gif)     
  ### Syntax : Key-Label Duration
  #### Example : w 1,ctrl 1
