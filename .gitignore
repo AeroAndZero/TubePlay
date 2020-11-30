@@ -1,2 +1,21 @@
 
 old gui code
+dist/chatReader.exe
+build/chatReader/xref-chatReader.html
+build/chatReader/warn-chatReader.txt
+build/chatReader/Tree-01.toc
+build/chatReader/Tree-00.toc
+build/chatReader/PYZ-00.toc
+build/chatReader/PYZ-00.pyz
+build/chatReader/PKG-00.toc
+build/chatReader/PKG-00.pkg
+build/chatReader/EXE-00.toc
+build/chatReader/chatReader.exe.manifest
+build/chatReader/base_library.zip
+build/chatReader/Analysis-00.toc
+__pycache__/getkeys.cpython-36.pyc
+__pycache__/directkeys.cpython-36.pyc
+__pycache__/chatReader.cpython-36.pyc
+__pycache__/getkeys.cpython-36.pyc
+__pycache__/directkeys.cpython-36.pyc
+__pycache__/chatReader.cpython-36.pyc
