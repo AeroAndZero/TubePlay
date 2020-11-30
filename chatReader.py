@@ -28,7 +28,6 @@ isExit = False
 
 #Setting up browser
 options = webdriver.ChromeOptions()
-options.add_argument('headless')
 browser = webdriver.Chrome(os.path.join(os.getcwd(),'chromedriver.exe'),chrome_options=options)
 
 #Removing emojis
@@ -89,6 +88,8 @@ def readChat(link='https://www.youtube.com/live_chat?is_popout=1&v=0Ku4f56pj-U')
                 newMsgId = newMsg.id
             except :
                 pass
+
+            print(actualMsg)
 
             #Differentiating new message
             if newMsgId != msgID[len(msgID)-1]:
