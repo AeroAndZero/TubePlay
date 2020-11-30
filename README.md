@@ -1,5 +1,6 @@
 # TubePlay - [Download For Windows](https://github.com/AeroAndZero/TubePlay/releases)
 ## Link to [Tutorial](https://youtu.be/H3n3XSrB9es)
+## Link to [New Tutorial](https://youtu.be/09lFqRdRQMY)
  Let your youtube livechat play the game !       
  ## Important ⚠️ :
  #### The version of chrome driver This package contains may differ from your chrome browser version. To setup this software correctly Follow these steps :
